@@ -1,0 +1,10 @@
+CONVERTING	C:\winIDEA\Delo\FRI_SMS_2015\Debug\asmpr1.elf
+LOADING	C:\winIDEA\Delo\FRI_SMS_2015\Debug\asmpr1.elf
+ANALYZING
+ANALYZING
+EMULATION	POD: ARM9   CPU: ARM926EJS
+LOADING 	1836 bytes
+VERIFYING
+	FILE: asmpr1.elf  AREA: Virtual
+	Verifying 072Ch locations from 0000h
+	Verify OK
