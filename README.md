@@ -37,20 +37,20 @@ S pomočjo vezja FRI-SMS sem realiziral sintetizator melodije, ki komunicira pre
 
 ## 2. Uporaba
 Najprej se uporabniku izpiše začetno sporočilo, ki mu poda napotke.
-<img src="./img1.png"> 
+<img src="./readme-images/img1.png"> 
 *<p style="font-size:12px">Slika1: Začetno sporočilo</p>*
 Nato lahko začne vpisovati melodijo. Lahko izbira med "**c**", "**d**", "**e**", "**f**", "**g**", "**a**", "**h**" in pa "**_**", ki pa pomeni premor. Lahko pa vpiše tudi v naprej določene ukaze. Za prikaz teh ukazov mora v terminal vpisati "/help". Vsak ukaz se začne z znakom "/", potrditev vnosa pa se naredi z pritiskom na "ENTER".
-<img src="./img2.png"> 
+<img src="./readme-images/img2.png"> 
 *<p style="font-size:12px">Slika2: Sporočilo /help</p>*
 
 <div style="page-break-after: always;"></div>
 
 Uporabnik lahko vnese neko zaporedje tonov, katere se mu med vnašanjem igrajo.
-<img src="./img3.png"> 
+<img src="./readme-images/img3.png"> 
 *<p style="font-size:12px">Slika3: Primer melodije</p>*
 
 Po vnešeni melodiji ima možnost sharanjevanja te melodije. Vpiše ukaz "/save". Če ima uporabnik že shranjeno neko melodijo, jo ta ukaz izbriše in shrani
-<img src="./img4.png"> 
+<img src="./readme-images/img4.png"> 
 *<p style="font-size:12px">Slika4: Shranjevanje melodije</p>*
 
 Ko ima neko melodijo shranjeno, vpiše ukaz "/play" in se mu ta melodija ponovno zaigra. To lahko stori večkrat.
