@@ -1,37 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-h1 {
-    position: absolute;
-    top: 40%
-}
-#author {
-    position: absolute;
-    top: 50%
-}
-img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-</style>
-<link rel="stylesheet" type="text/css" href="mystyle.css">
-</head>
-<body>
-
-<h1><b>Sintetizator melodij na mikrokrmilniku <br>
-FRI-SMS</h1>
-<h2 id="author">Avtor: Mark Loboda</h2>
-
-<img src="logo.png" style="margin-top:10%;">
-
-</body>
-</html>
-
-
-<div style="page-break-after: always;"></div>
-
 ## 1. Uvod
 S pomočjo vezja FRI-SMS sem realiziral sintetizator melodije, ki komunicira preko RS232 povezave. Uporabil sem mikro krmilnik FRI-SMS in piskač. Note sem s pomočjo piskača zaigral tako, da sem spreminjal razmerje časa med piskom in ne piskom.
 
@@ -43,13 +9,11 @@ Nato lahko začne vpisovati melodijo. Lahko izbira med "**c**", "**d**", "**e**"
 <img src="./readme-images/img2.png"> 
 *<p style="font-size:12px">Slika2: Sporočilo /help</p>*
 
-<div style="page-break-after: always;"></div>
-
 Uporabnik lahko vnese neko zaporedje tonov, katere se mu med vnašanjem igrajo.
 <img src="./readme-images/img3.png"> 
 *<p style="font-size:12px">Slika3: Primer melodije</p>*
 
-Po vnešeni melodiji ima možnost sharanjevanja te melodije. Vpiše ukaz "/save". Če ima uporabnik že shranjeno neko melodijo, jo ta ukaz izbriše in shrani
+Po vnešeni melodiji ima možnost sharanjevanja te melodije. Vpiše ukaz "/save". Če ima uporabnik že shranjeno neko melodijo, jo ta ukaz izbriše in shrani.  
 <img src="./readme-images/img4.png"> 
 *<p style="font-size:12px">Slika4: Shranjevanje melodije</p>*
 
@@ -77,8 +41,6 @@ Funkcija *BUZZ* najprej začne časovnik za igranje note (TC1). Nato vstopi v za
 $$SLCK=32768Hz, RC=16384  : t=(1/32768) * 16384 = 0.5s$$ Nato kliče funkcijo BUZZER_ON, ki prižge piskač. Potem kliče DELAY_TC0, za katerega je čas čakanja določen s pomočjo vrednosti v registru r0. Časi čakanja so določeni na podlagi trenutno prebranega znaka (note). Nato se kliče funkcija BUZZER_OFF, ki piskač ugasne. Nato pa se ponovno kliče DELAY_TC0, ki počaka enako dolgo kot pri prvem klicu. Potem pa se izvede preverjanje CPCS zastavice časovnika TC1. Če zastavica ni postavljena, potem ponovno zažene del programa, kjer je BUZZER_ON, WAIT, BUZZER_OFF, WAIT.
 Na koncu pa se izvede še DELAY_TC0 s konstanto 4000, da je med zaigranimi toni majhen premor.
 Po izvedeni funkciji se program vrne na začetek glavne zanke programa.
-
-<div style="page-break-after: always;"></div>
 
 ## 4. Posamezni deli kode
 ### 4.1. Inicializacija
@@ -121,7 +83,6 @@ INIT_TC0:
   str r0, [r2, #TC_CCR]
   ldmfd r13!, {r0, r2, r15}
 ```
-<div style="page-break-after: always;"></div>
 
 #### 4.1.2. INIT_TC1
 V tem delu se inicializira časovnik TC1. Inicializira se z nastavitvami:
@@ -168,8 +129,6 @@ INIT_BUZZER:
   ldmfd r13!, {r0, r1, r15}
 ```
 
-<div style="page-break-after: always;"></div>
-
 ### 4.2. Glani del programa
 To je glavna zanka programa, ki se ponavlja do prekinitve izvajanja. Najprej se izvede branje znaka, nato pa generira odziv glede na vpisano. Najprej preveri, če gre za ukaz, drugače pa zaigra zapisano noto.
 ```c
@@ -197,8 +156,6 @@ LOOP:
   bl BUZZ
   b LOOP
 ```
-
-<div style="page-break-after: always;"></div>
 
 ### 4.3. Pomembnejši podprogrami
 #### 4.3.1. RCV_DEBUG
@@ -228,8 +185,6 @@ SNDD_LP:
   str r2, [r1, #DBGU_THR]
   ldmfd r13!, {r1, r3, pc}
 ```
-
-<div style="page-break-after: always;"></div>
 
 #### 4.3.3. COMMAND_CATCH
 Ta funkcija najprej počaka, da uporabnik vnese nek ukaz. Pravzaprav v zanki bere zapisane znake, branje pa prekini, ko uporabnik pritisne gumb ENTER. Nato pa se izvede preverjanje zapisanega. Če pride do ujemanja, se izvede primerna funkcija za določen ukaz. Če ukaz ni najden, pa vrne vse registre na prejsnje stanje in skoči na začetek glavne zanke.
@@ -272,8 +227,6 @@ COMMAND_CATCH:
   b LOOP
 ```
 
-<div style="page-break-after: always;"></div>
-
 #### 4.3.4. Določanje čakanja; NOTE_FREQ
 Naloga te funkcije je določati čas čakanja TC0 v funkciji BUZZ. Primerja vnesen znak z njihovo ASCII kodo in če pride do ujemanja zapiše v register r2 vrednost čakanja. Nato bo TC0 čakal toliko mikrosekund, kot je vnesena vrednost.
 
@@ -315,8 +268,6 @@ return freq in r2
   ldmfd r13!, {pc}
 ```
 
-<div style="page-break-after: always;"></div>
-
 #### 4.3.5. BUZZER_ON
 Piskač se prižge z vpisom bita 1 na ustrezno mesto v registru PIO_SODR (Set Output Data Register).
 ```c
@@ -350,8 +301,6 @@ ADD_NOTE:
   
   ldmfd r13!, {r0, r1, pc}
 ```
-
-<div style="page-break-after: always;"></div>
 
 #### 4.3.7. BUZZ
 Ta funkcija je za samo igranje tonov. Potek le te je razložen zgoraj v točki 3.
@@ -387,9 +336,6 @@ BUZZ:
   ldmfd r13!, {r0, r1, r2, r3, r4, r14}
 ```
 
-
-
-<div style="page-break-after: always;"></div>
 
 ### 5. Funkcije ukazov
 #### 5.1. COMMAND_HELP
